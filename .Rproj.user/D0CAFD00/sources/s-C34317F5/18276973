@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1580926323716.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "18276973",
+    "lastKnownWriteTime" : 1580926317,
+    "last_content_update" : 1580926317,
+    "path" : "C:/Users/lrichards/source/repos/katabatic/config.toml",
+    "project_path" : "config.toml",
+    "properties" : {
+        "cursorPosition" : "28,29",
+        "scrollLine" : "4"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "toml"
+}
