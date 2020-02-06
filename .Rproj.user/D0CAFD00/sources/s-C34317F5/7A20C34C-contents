@@ -22,9 +22,9 @@ organizations:
   url: "https://www.geographicsolutions.com/"
 role: Data Services Team Lead
 social:
-- icon: envelope
-  icon_pack: fas
-  link: '#contact'
+- icon: linkedin
+  icon_pack: fab
+  link: 'https://www.linkedin.com/in/levi-richards-300a2a128'
 - icon: twitter
   icon_pack: fab
   link: https://twitter.com/wergeld
