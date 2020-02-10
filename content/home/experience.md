@@ -24,7 +24,7 @@ date_format = "Jan 2006"
   location = "Florida"
   date_start = "2008-03-01"
   date_end = ""
-  description = """Manage team to create and parse though internally generated externally provided data for analysis and dissemination.""
+  description = """Manage team to create and parse though internally generated externally provided data for analysis and dissemination.
   Responsibilities include:
   
   * Analysing

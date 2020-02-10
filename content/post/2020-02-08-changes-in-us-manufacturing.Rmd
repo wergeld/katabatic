@@ -1,0 +1,257 @@
+---
+title: Changes In US Manufacturing
+author: Admin
+date: '2020-02-08'
+slug: changes-in-us-manufacturing
+categories:
+  - Data
+tags:
+  - LMI
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2020-02-08T15:45:00-05:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+```{r setup, include=FALSE}
+library(plotly)
+library(widgetframe)
+knitr::opts_chunk$set(collapse = TRUE)
+
+file_names1 <- dir(path = "D:\\bls\\qcew\\extract\\typ1", pattern = ".csv", full.names = TRUE)
+
+alldataType1 <- do.call(rbind,lapply(file_names1,function(i){
+  read.csv(i, header=TRUE, stringsAsFactors = FALSE)
+}))
+
+file_names2 <- dir(path = "D:\\bls\\qcew\\extract\\typ2", pattern = ".csv", full.names = TRUE)
+
+alldataType2 <- do.call(rbind,lapply(file_names2,function(i){
+  read.csv(i, header=TRUE, stringsAsFactors = FALSE)
+}))
+
+AllDataType1Stripped <- alldataType1 %>% select(area_fips, area_title, own_code, own_title, industry_code, industry_title, year, qtr, qtrly_estabs_count, avg_wkly_wage, month1_emplvl, month2_emplvl, month3_emplvl, total_qtrly_wages, taxable_qtrly_wages, qtrly_contributions)
+
+AllDataType2Stripped <- alldataType2 %>% select(area_fips, area_title, own_code, own_title, industry_code, industry_title, year, qtr, qtrly_estabs_count, avg_wkly_wage, month1_emplvl, month2_emplvl, month3_emplvl, total_qtrly_wages, taxable_qtrly_wages, qtrly_contributions)
+
+AllData <- rbind(AllDataType1Stripped, AllDataType2Stripped)
+AllData$timeValue <- paste(AllData$year,AllData$qtr,sep="Q")
+AllData$avgemp <- (AllData$month1_emplvl + AllData$month2_emplvl + AllData$month3_emplvl)/3
+AllData$annualwage <- AllData$avg_wkly_wage * 52
+```
+## Industry Data From the BLS
+
+I was interested to see how the manufacturing jobs are doing across the US. This data can be pulled from the [Bureau Of Labor Statistics](https://www.bls.gov/cew/downloadable-data-files.htm) Quarterly Census of Employment and Wages program. This is not a trivial amount of data as it covers all US industries using the North American Industry Classification (NAIC) taxonomies for every county, metropolitan area, state, and national geographies for multiple establishmen ownership types. I am working with this data as part of my job with [Geographic Solutions](https://www.geographicsolutions.com) in our labor market product. That product makes use of the Federally mandated Workforce Information Database (WID) standard: <http://widcenter.org/>. Luckily for us, the BLS does not have to produce data in the WID format...
+
+At my work we have a set of PowerShell and SQL scripts to parse out the data provided in the BLS format for use in the WID. Here I am not going to worry too much about the WID format.
+
+First we need to pull in the data files. There is a BLS API and at least one R package that makes use of this API. However, the files are not always where the API thinks they should be - many 404 errors. So, instead I just went to the download page and manually pulled in the CSVs By Industry quarterly files. I did this back to 2010 for the purposes of this investigation. Once these files are present in your environment you should then extract the CSV files. I focused on the "31-33" and their child files for this exercise. Now, there are many ways to import CSVs to a dataframe; here is mine:
+```r
+alldataType1 <- do.call(rbind,lapply(file_names1,function(i){
+  read.csv(i, header=TRUE, stringsAsFactors = FALSE)
+}))
+
+file_names2 <- dir(path = "D:\\bls\\qcew\\extract\\typ2", pattern = ".csv", full.names = TRUE)
+
+alldataType2 <- do.call(rbind,lapply(file_names2,function(i){
+  read.csv(i, header=TRUE, stringsAsFactors = FALSE)
+}))
+
+AllDataType1Stripped <- alldataType1 %>% select(area_fips, area_title, own_code, own_title, industry_code, industry_title, year, qtr, qtrly_estabs_count, avg_wkly_wage, month1_emplvl, month2_emplvl, month3_emplvl, total_qtrly_wages, taxable_qtrly_wages, qtrly_contributions)
+
+AllDataType2Stripped <- alldataType2 %>% select(area_fips, area_title, own_code, own_title, industry_code, industry_title, year, qtr, qtrly_estabs_count, avg_wkly_wage, month1_emplvl, month2_emplvl, month3_emplvl, total_qtrly_wages, taxable_qtrly_wages, qtrly_contributions)
+
+AllData <- rbind(AllDataType1Stripped, AllDataType2Stripped)
+AllData$timeValue <- paste(AllData$year,AllData$qtr,sep="Q")
+AllData$avgemp <- (AllData$month1_emplvl + AllData$month2_emplvl + AllData$month3_emplvl)/3
+AllData$annualwage <- AllData$avg_wkly_wage * 52
+```
+Astute readers will notice that the files are in a "typ1" directory. This is because in 2016 the BLS was kind enough to change the available columns of data and R was not appreciative. So, I have 2 imports, 2 sections where I am just selecting the columns I care about for this excercise, and a final set of data where I add in some computed columns.
+
+Let us see how Michigan's manufacturing is holding up. I am using just the NAIC level 3 industry codes and privately owned establishments here:
+```r
+MFCT26 <- AllData[AllData$area_fips == '26000' & AllData$own_code == 5 & AllData$industry_code != '31-33',]
+
+library(plotly)
+p <- MFCT26 %>%
+  plot_ly(
+    x = ~annualwage, 
+    y = ~qtrly_estabs_count, 
+    marker = list(size = ~avgemp, sizeref = 10, sizemode = 'area'),
+    color = ~industry_code, 
+    frame = ~timeValue, 
+    text = ~paste("<i>", industry_title,'</i><br><b>Annual Wage</b>:', annualwage,'</i><br><b>Establishments</b>:',qtrly_estabs_count,'</i><br><b>Employment</b>:',avgemp),
+    type = 'scatter',
+    mode = 'markers'
+  ) %>%
+  layout(
+    xaxis = list(
+      type = "log"
+    )
+  )
+
+p
+```
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+MFCT26 <- AllData[AllData$area_fips == '26000' & AllData$own_code == 5 & AllData$industry_code != '31-33',]
+library(plotly)
+p <- MFCT26 %>%
+  plot_ly(
+    x = ~annualwage, 
+    y = ~qtrly_estabs_count, 
+    size = ~avgemp,
+    color = ~industry_code, 
+    frame = ~timeValue, 
+    text = ~paste("<i>", industry_title,'</i><br><b>Annual Wage</b>:', annualwage,'</i><br><b>Establishments</b>:',qtrly_estabs_count,'</i><br><b>Employment</b>:',avgemp),
+    type = 'scatter',
+    mode = 'markers'
+  ) %>%
+  layout(
+    xaxis = list(
+      type = "log"
+    )
+  )
+
+p
+```
+
+Now let's check in Florida (change area_fips to '12000'):
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+MFCT12 <- AllData[AllData$area_fips == '12000' & AllData$own_code == 5 & AllData$industry_code != '31-33',]
+library(plotly)
+p12 <- MFCT26 %>%
+  plot_ly(
+    x = ~annualwage, 
+    y = ~qtrly_estabs_count, 
+    size = ~avgemp,
+    color = ~industry_code, 
+    frame = ~timeValue, 
+    text = ~paste("<i>", industry_title,'</i><br><b>Annual Wage</b>:', annualwage,'</i><br><b>Establishments</b>:',qtrly_estabs_count,'</i><br><b>Employment</b>:',avgemp),
+    type = 'scatter',
+    mode = 'markers'
+  ) %>%
+  layout(
+    xaxis = list(
+      type = "log"
+    )
+  )
+
+p12
+```
+
+
+Curious to see the number of establshiments over time for Michigan in a choropleth:
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(widgetframe)
+library(tidyverse)
+library(highcharter)
+
+# List of counties in MI.
+MIcounties <- c("26001","26003","26005","26007","26009","26011","26013","26015","26017","26019","26021","26023","26025","26027","26029","26031","26033","26035","26037","26039","26041","26043","26045","26047","26049","26051","26053","26055","26057","26059","26061","26063","26065","26067","26069","26071","26073","26075","26077","26079","26081","26083","26085","26087","26089","26091","26093","26095","26097","26099","26101","26103","26105","26107","26109","26111","26113","26115","26117","26119","26121","26123","26125","26127","26129","26131","26133","26135","26137","26139","26141","26143","26145","26147","26149","26151","26153","26155","26157","26159","26161","26163","26165")
+
+# Using only those counties for private ownership in NAIC 3 manufacturing grou.
+MFCT26Counties <- AllData[AllData$area_fips %in% MIcounties & AllData$own_code == 5 & AllData$industry_code == '31-33',] %>% select(area_fips, timeValue, qtrly_estabs_count)
+
+# Add in the required format of the geographic code for HighMaps using hc-key.
+MFCT26Counties$mapcode <-paste("us","mi",str_sub(MFCT26Counties$area_fips,-3),sep="-")
+
+# Convert to a data sequence for each point over time
+ds <- MFCT26Counties %>% 
+  group_by(mapcode) %>% 
+  do(item = list(
+    mapcode = first(.$mapcode),
+    sequence = .$qtrly_estabs_count,
+    value = first(.$qtrly_estabs_count))) %>% 
+  .$item
+
+# Get the MI county map for HighMaps
+mpdta <- download_map_data("https://code.highcharts.com/mapdata/countries/us/us-mi-all.js",
+  quiet = TRUE
+)
+
+# Create and render the choropleth
+hc <- highchart(type = "map") %>% 
+  hc_add_series(data = ds,
+                name = "Manufacturing (31-33)",
+                mapData = mpdta,
+                joinBy = c("hc-key","mapcode"),
+                borderWidth = 0.01) %>% 
+  hc_colorAxis(stops = color_stops()) %>%  
+  hc_title(text = "Establishments") %>% 
+  hc_legend(layout = "vertical", reversed = TRUE,
+            floating = TRUE, align = "right") %>% 
+  hc_add_theme(hc_theme_smpl()) %>% 
+  hc_motion(
+    enabled = TRUE,
+    axisLabel = "Quarter",
+    labels = sort(unique(MFCT26Counties$timeValue)),
+    series = 0,
+    updateIterval = 50,
+    magnet = list(
+      round = "floor",
+      step = 0.1
+    )
+  )
+
+frameWidget(hc)
+```
+Code to create this map:
+```r
+library(widgetframe)
+library(tidyverse)
+library(highcharter)
+
+# List of counties in MI.
+MIcounties <- c("26001","26003","26005","26007","26009","26011","26013","26015","26017","26019","26021","26023","26025","26027","26029","26031","26033","26035","26037","26039","26041","26043","26045","26047","26049","26051","26053","26055","26057","26059","26061","26063","26065","26067","26069","26071","26073","26075","26077","26079","26081","26083","26085","26087","26089","26091","26093","26095","26097","26099","26101","26103","26105","26107","26109","26111","26113","26115","26117","26119","26121","26123","26125","26127","26129","26131","26133","26135","26137","26139","26141","26143","26145","26147","26149","26151","26153","26155","26157","26159","26161","26163","26165")
+
+# Using only those counties for private ownership in NAIC 3 manufacturing grou.
+MFCT26Counties <- AllData[AllData$area_fips %in% MIcounties & AllData$own_code == 5 & AllData$industry_code == '31-33',] %>% select(area_fips, timeValue, qtrly_estabs_count)
+
+# Add in the required format of the geographic code for HighMaps using hc-key.
+MFCT26Counties$mapcode <-paste("us","mi",str_sub(MFCT26Counties$area_fips,-3),sep="-")
+
+# Convert to a data sequence for each point over time
+ds <- MFCT26Counties %>% 
+  group_by(mapcode) %>% 
+  do(item = list(
+    mapcode = first(.$mapcode),
+    sequence = .$qtrly_estabs_count,
+    value = first(.$qtrly_estabs_count))) %>% 
+  .$item
+
+# Get the MI county map for HighMaps
+mpdta <- download_map_data("https://code.highcharts.com/mapdata/countries/us/us-mi-all.js",
+  quiet = TRUE
+)
+
+# Create and render the choropleth
+hc <- highchart(type = "map") %>% 
+  hc_add_series(data = ds,
+                name = "31-33 Average Employment",
+                mapData = mpdta,
+                joinBy = c("hc-key","mapcode"),
+                borderWidth = 0.01) %>% 
+  hc_colorAxis(stops = color_stops()) %>%  
+  hc_title(text = "Manufacturing Employment") %>% 
+  hc_legend(layout = "vertical", reversed = TRUE,
+            floating = TRUE, align = "right") %>% 
+  hc_add_theme(hc_theme_smpl()) %>% 
+  hc_motion(
+    enabled = TRUE,
+    axisLabel = "Quarter",
+    labels = sort(unique(MFCT26Counties$timeValue)),
+    series = 0,
+    updateIterval = 50,
+    magnet = list(
+      round = "floor",
+      step = 0.1
+    )
+  )
+
+frameWidget(hc)
+```

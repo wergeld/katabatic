@@ -26,12 +26,16 @@ subtitle = ""
     tag = "*"
   
   [[content.filter_button]]
-    name = "Deep Learning"
-    tag = "Deep Learning"
+    name = "Big Data"
+    tag = "Big Data"
   
   [[content.filter_button]]
-    name = "Other"
-    tag = "Demo"
+    name = "Labor Market Information"
+    tag = "LMI"
+  
+  [[content.filter_button]]
+    name = "Work"
+    tag = "Work"
 
 [design]
   # Choose how many columns the section has. Valid values: 1 or 2.
@@ -57,8 +61,8 @@ subtitle = ""
   # color = "navy"
   
   # Background gradient.
-  # gradient_start = "DeepSkyBlue"
-  # gradient_end = "SkyBlue"
+   gradient_start = "DeepSkyBlue"
+   gradient_end = "SkyBlue"
   
   # Background image.
   # image = "background.jpg"  # Name of image in `static/img/`.

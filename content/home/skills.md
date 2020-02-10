@@ -50,6 +50,12 @@ subtitle = ""
   description = "90%"
 
 [[feature]]
+  icon = "microchip"
+  icon_pack = "fas"
+  name = "Arduino"
+  description = "80%"
+
+[[feature]]
   icon = "python"
   icon_pack = "fab"
   name = "Python"

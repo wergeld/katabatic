@@ -1,0 +1,239 @@
+---
+title: HighCharts And Number Series
+author: Admin
+date: '2020-02-08'
+slug: highcharts-and-number-series
+categories:
+  - Demo
+tags:
+  - plot
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2020-02-08T14:22:16-05:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+
+
+<div id="using-highcharts-for-number-series" class="section level1">
+<h1>Using HighCharts for Number Series</h1>
+<p>After watching a few of the Numberphile videos with Neil Sloane I decided to replicate a few of them in HighCharts. You can see the video I really dove into here <a href="https://youtu.be/pAMgUB51XZA" class="uri">https://youtu.be/pAMgUB51XZA</a>. The two series I wanted to replicate are:</p>
+<ul>
+<li><a href="https://oeis.org/A133058" class="uri">https://oeis.org/A133058</a></li>
+<li><a href="https://oeis.org/A265326" class="uri">https://oeis.org/A265326</a></li>
+</ul>
+<div id="the-a133058-series" class="section level2">
+<h2>The A133058 Series</h2>
+This looks a lot like random noise with maybe a sort of curved growth pattern.
+<div id="chartA133058_random" style="height: 400px; min-width: 310px">
+
+</div>
+<script src="https://code.highcharts.com/stock/highstock.js"></script>
+..until x = 638:
+<div id="chartA133058" style="height: 400px; min-width: 310px">
+
+</div>
+<p>The graph is created by iterating over x N times and calling:</p>
+<pre class="javascript"><code>function gcd(a, b) {
+  if (b === 0) return a;
+  return gcd(b, a % b);
+}
+
+function isCoprime(a, b) {
+  if (typeof a !== &#39;number&#39; || typeof b !== &#39;number&#39;) {
+    throw new TypeError(&#39;Expected a number&#39;);
+  }
+
+  return gcd(a, b) === 1;
+}
+for (i = 2; i &lt;= N; i += 1) {
+  if (isCoprime(i, previousY) === true) {
+    dataY = previousY + i + 1;
+  } else {
+    dataY = previousY / gcd(previousY, i);
+  }
+  data.push([i, Math.log(dataY)]);
+  previousY = dataY;
+}</code></pre>
+</div>
+<div id="the-a265326-series" class="section level2">
+<h2>The A265326 Series</h2>
+This one, to me, has a cool forced perspective effect. The polygon is repeated and increases in scale.
+<div id="chartA265326" style="height: 400px; min-width: 310px">
+
+</div>
+<p>The graph is created by iterating over x N times and calling:</p>
+<pre class="javascript"><code>const isPrime = num =&gt; {
+    for(let i = 2, s = Math.sqrt(num); i &lt;= s; i++)
+        if(num % i === 0) return false; 
+    return num &gt; 1;
+}
+
+function reversePrimes(a) {
+    xBin = a.toString(2);
+    var b = parseInt(xBin.split(&#39;&#39;).reverse().join(&#39;&#39;), 2 );
+
+    return b;
+}
+
+for (i = 0; i &lt;= 100000; i += 1) {
+  if (isPrime(i) === true) {
+    dataY = i - reversePrimes(i);
+    data.push([i, dataY]);
+  }
+}</code></pre>
+<script language="javascript">
+function gcd(a, b) {
+  if (b === 0) return a;
+  return gcd(b, a % b);
+}
+
+function isCoprime(a, b) {
+  if (typeof a !== 'number' || typeof b !== 'number') {
+    throw new TypeError('Expected a number');
+  }
+
+  return gcd(a, b) === 1;
+}
+
+Highcharts.chart('chartA133058_random', {
+  chart: {
+    type: 'scatter',
+        zoomType: 'x'
+  },
+  title: {
+    text: null
+  },
+  legend: {
+    enabled: false
+  },
+  series: [{
+    name: 'A133058',
+    turboThreshold: 1000,
+    marker: {
+      radius: 2
+    },
+    data: (function() {
+      var data = [],
+        i,
+        previousY = 1;
+
+      for (i = 2; i <= 500; i += 1) {
+        if (isCoprime(i, previousY) === true) {
+          dataY = previousY + i + 1;
+        } else {
+          dataY = previousY / gcd(previousY, i);
+        }
+
+        data.push([i, Math.log(dataY)]);
+        previousY = dataY;
+      }
+
+      return data;
+    }())
+  }]
+});
+
+Highcharts.chart('chartA133058', {
+  chart: {
+    type: 'scatter',
+        zoomType: 'x'
+  },
+  title: {
+    text: null
+  },
+  legend: {
+    enabled: false
+  },
+  xAxis: {
+    plotLines: [{
+      color: '#FF0000',
+      width: 2,
+      value: 638,
+            label: {
+                text: 'This is weird'
+            }
+    }]
+  },
+  series: [{
+    name: 'A133058',
+    turboThreshold: 1000,
+    marker: {
+      radius: 2
+    },
+    data: (function() {
+      var data = [],
+        i,
+        previousY = 1;
+
+      for (i = 2; i <= 1000; i += 1) {
+        if (isCoprime(i, previousY) === true) {
+          dataY = previousY + i + 1;
+        } else {
+          dataY = previousY / gcd(previousY, i);
+        }
+
+        data.push([i, Math.log(dataY)]);
+        previousY = dataY;
+      }
+
+      return data;
+    }())
+  }]
+});
+
+const isPrime = num => {
+    for(let i = 2, s = Math.sqrt(num); i <= s; i++)
+        if(num % i === 0) return false; 
+    return num > 1;
+}
+
+
+function reversePrimes(a) {
+    xBin = a.toString(2);
+    var b = parseInt(xBin.split('').reverse().join(''), 2 );
+
+    return b;
+}
+
+Highcharts.chart('chartA265326', {
+  chart: {
+    type: 'scatter',
+        zoomType: 'x'
+  },
+  title: {
+    text: null
+  },
+  legend: {
+    enabled: false
+  },
+  series: [{
+    name: 'A265326',
+    marker: {
+      radius: 2
+    },
+        turboThreshold: 1000,
+    data: (function() {
+      var data = [],
+        i;
+
+      for (i = 0; i <= 100000; i += 1) {
+        if (isPrime(i) === true) {
+                    dataY = i - reversePrimes(i);
+            data.push([i, dataY]);
+        }
+      }
+
+      return data;
+    }())
+  }]
+});
+</script>
+</div>
+</div>
