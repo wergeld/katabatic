@@ -6,11 +6,11 @@ event:
 event_url:
 location:
 address:
-  city: Clearwater
+  city: Clearwater Beach
   region: FL
   country: United States
 summary: Annual Workforce Technology conference where I will have several talks on aggregation methods and data access interfaces to a variety of Geographic Solutions data sets. Agenda is still being set.
-abstract:
+abstract: Annual Workforce Technology conference where I will have several talks on aggregation methods and data access interfaces to a variety of Geographic Solutions data sets. Agenda is still being set.
 
 # Talk start and end times.
 #   End time can optionally be hidden by prefixing the line with `#`.
