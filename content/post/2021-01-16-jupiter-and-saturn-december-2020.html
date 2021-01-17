@@ -1,0 +1,45 @@
+---
+title: Jupiter And Saturn December 2020
+author: Admin
+date: '2021-01-16'
+slug: jupiter-and-saturn-december-2020
+categories:
+  - Data
+tags:
+  - Astronomy
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2021-01-16T17:34:01-05:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+<script src="/rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="/rmarkdown-libs/pymjs/pym.v1.js"></script>
+<script src="/rmarkdown-libs/widgetframe-binding/widgetframe.js"></script>
+
+
+<div id="conjunction-of-jupiter-and-saturn" class="section level2">
+<h2>Conjunction of Jupiter And Saturn</h2>
+<p>I got back into astronomy while reading about the conjunction of Jupiter and Saturn that was set to be at the closes on December 21, 2020. I took out my Meade ETX-90 telescope to view it. Then realized to my horror that the GoTo motor that contols the altitude and azimuth angles of the telescope was no longer functional. Turning on the power with either batteries installed or with a DC power plug resulted in no ON state. With the GoTo mount busted how was I going to to… go to…. the planets? Luckily our backyard is south of our house. I knew, generally, that the planets would be in the Southern sky. Now to figure out when and where. I could use one of the many sky mapper websites or software that will present the sky for your area/time. However, I wanted to do this all myself to re-learn what I had used way back in high school and college.</p>
+<p>In high school we had actually built a radio telescope on <a href="https://www.tampabay.com/archive/1991/11/06/satellite-dish-launches-class-project/?outputType=amp">campus</a> through a science grant. The linked article is a re-publish from 1992 (how time slips by…). We had calculators and notepads that we used to determine when a celestial object would be within view of our dish. Things like Stellarium did not exist yet. I did have an HP calculator that did have a star-plotter on it. That was a crazy piece of efficient coding - however, not at all fast. We learned about time frames, spatial frames, and observer locations. Again, this was all by hand - we even used road atlases to determine the latitude and longitude of our observation location. After I my first year of college I even returned back to the program at my high school as we went on a one week trip to the NRAO in Greenbank, WV where I got hands on time with a few dishes and detectors. My target was Sag A*. However, my printouts are lost to time now.</p>
+<p>So, with this new exciting conjunction coming up and a hardware failure, I took the plunge to do this by hand again. Only this time in R so that I could make it re-usable and expandable. Steps needed to make this work:</p>
+<ol style="list-style-type: decimal">
+<li>Get list of solar system ephemeris</li>
+<li>Determine calculations needed to convert the ephemeris to altitude and longitude for my location and time</li>
+<li>Somehow plot the locations of the planets and maybe animate the motions just for fun</li>
+</ol>
+<p>After many trials and errors with finding ephemeris for the 2 planets and Earth I thought I had struck gold. Following along with known results I was able to produce predictions for Mars within, to me, an acceptable error range. I then applied my own latitude and longitude and….really horrible results. I am not sure if the logic I was trying to follow involved specific lat/long values. So, I looked for more research items. I ordered a book called Celestial Calculations by J.L. Lawrence, but it had not come yet. I did more Googling and testing. Still, I was getting results that made no sense.</p>
+<p>In the end I just went outside and found the planets. They were very bright! Here is a picture I managed tdo graph via my Pixel 5:
+<img src="/post/2021-01-16-jupiter-and-saturn-december-2020_files/jupsat_20201221.jpg" alt="Saturn and Jupiter on December 21, 2020" /></p>
+<p>So, I continued my search on how to solve the issues. I did eventually do it and you can find my code on my <a href="https://github.com/wergeld/Planet_AltAz">GitHub</a> repo. The issues I still have are finding more up to date elements of oscultation other than those from 2013. I have tried to use several R and Python packages to get these but have yet to actually find a library that gets the same orbital elements for 2013 as a test. I did finally get the book and am now working through it. It is much fun and takes me back to my academic times.</p>
+<p>Here is the output of my plot of Jupiter and Saturn for the month of December 2020 in Tampa, FL:
+<div id="htmlwidget-1" style="width:100%;height:480px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"url":"/post/2021-01-16-jupiter-and-saturn-december-2020_files/figure-html//widgets/widget_unnamed-chunk-1.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script></p>
+</div>

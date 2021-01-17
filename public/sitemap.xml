@@ -18,6 +18,41 @@
   </url>
   
   <url>
+    <loc>/tags/astronomy/</loc>
+    <lastmod>2021-01-16T17:34:01-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/</loc>
+    <lastmod>2021-01-16T17:34:01-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/data/</loc>
+    <lastmod>2021-01-16T17:34:01-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/jupiter-and-saturn-december-2020/</loc>
+    <lastmod>2021-01-16T17:34:01-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2021-01-16T17:34:01-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2021-01-16T17:34:01-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2021-01-16T17:34:01-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/authors/admin/</loc>
     <lastmod>2020-06-15T08:00:00+00:00</lastmod>
   </url>
@@ -33,22 +68,12 @@
   </url>
   
   <url>
-    <loc>/</loc>
-    <lastmod>2020-06-15T08:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/tags/lmi/</loc>
     <lastmod>2020-06-15T08:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/talk/</loc>
-    <lastmod>2020-06-15T08:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
     <lastmod>2020-06-15T08:00:00+00:00</lastmod>
   </url>
   
@@ -63,17 +88,7 @@
   </url>
   
   <url>
-    <loc>/categories/</loc>
-    <lastmod>2020-02-08T15:45:00-05:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/post/changes-in-us-manufacturing/</loc>
-    <lastmod>2020-02-08T15:45:00-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/data/</loc>
     <lastmod>2020-02-08T15:45:00-05:00</lastmod>
   </url>
   
@@ -90,11 +105,6 @@
   <url>
     <loc>/tags/plot/</loc>
     <lastmod>2020-02-08T14:22:16-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/</loc>
-    <lastmod>2020-02-08T15:45:00-05:00</lastmod>
   </url>
   
   <url>
@@ -118,33 +128,8 @@
   </url>
   
   <url>
-    <loc>/post/writing-technical-content/</loc>
-    <lastmod>2019-07-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication_types/3/</loc>
-    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/preprint/</loc>
-    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication_types/</loc>
-    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/</loc>
-    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/source-themes/</loc>
-    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
+    <loc>/courses/</loc>
+    <lastmod>2019-05-05T00:00:00+01:00</lastmod>
   </url>
   
   <url>
@@ -168,32 +153,11 @@
   </url>
   
   <url>
-    <loc>/publication_types/2/</loc>
-    <lastmod>2015-09-01T00:00:00+00:00</lastmod>
+    <loc>/publication_types/</loc>
   </url>
   
   <url>
-    <loc>/publication/journal-article/</loc>
-    <lastmod>2015-09-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/authors/robert-ford/</loc>
-    <lastmod>2015-09-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication_types/1/</loc>
-    <lastmod>2013-07-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/conference-paper/</loc>
-    <lastmod>2013-07-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/courses/</loc>
+    <loc>/publication/</loc>
   </url>
   
 </urlset>

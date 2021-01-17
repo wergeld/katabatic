@@ -206,6 +206,44 @@
 
 
 
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-162001422-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url, target) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           if (target !== '_blank') {
+             document.location = url;
+           }
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target, event.target.getAttribute('target'));  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'UA-162001422-1', { 'anonymize_ip': true });
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
   
 
 
@@ -239,7 +277,7 @@
   <meta property="og:description" content="Data Services Team Lead"><meta property="og:image" content="img/map[gravatar:%!s(bool=false) shape:circle]">
   <meta property="twitter:image" content="img/map[gravatar:%!s(bool=false) shape:circle]"><meta property="og:locale" content="en-us">
   
-    <meta property="og:updated_time" content="2020-06-15T08:00:00&#43;00:00">
+    <meta property="og:updated_time" content="2021-01-16T00:00:00&#43;00:00">
   
 
   
@@ -804,6 +842,97 @@
   <div class="media-body">
 
     <h3 class="article-title mb-0 mt-0">
+      <a href="/post/jupiter-and-saturn-december-2020/" >Jupiter And Saturn December 2020</a>
+    </h3>
+
+    
+    <div class="article-style">
+      Conjunction of Jupiter And SaturnI got back into astronomy while reading about the conjunction of Jupiter and Saturn that was set to …
+    </div>
+    
+
+    <div class="stream-meta article-metadata">
+
+      
+
+      
+        
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+          Last updated on
+      
+    
+    Jan 16, 2021
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    4 min read
+  </span>
+  
+
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/categories/data/">Data</a></span>
+  
+
+</div>
+
+      
+    </div>
+
+    
+
+  </div>
+  <div class="ml-3">
+    
+    
+  </div>
+</div>
+
+      
+    
+      
+        
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<div class="media stream-item">
+  <div class="media-body">
+
+    <h3 class="article-title mb-0 mt-0">
       <a href="/post/changes-in-us-manufacturing/" >Changes In US Manufacturing</a>
     </h3>
 
@@ -856,97 +985,6 @@
   <span class="middot-divider"></span>
   <span class="article-categories">
     <i class="fas fa-folder mr-1"></i><a href="/categories/data/">Data</a></span>
-  
-
-</div>
-
-      
-    </div>
-
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
-</div>
-
-      
-    
-      
-        
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<div class="media stream-item">
-  <div class="media-body">
-
-    <h3 class="article-title mb-0 mt-0">
-      <a href="/post/highcharts-and-number-series/" >HighCharts And Number Series</a>
-    </h3>
-
-    
-    <div class="article-style">
-      Using HighCharts for Number SeriesAfter watching a few of the Numberphile videos with Neil Sloane I decided to replicate a few of them …
-    </div>
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
-      
-        
-
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
-    
-      
-          Last updated on
-      
-    
-    Feb 8, 2020
-  </span>
-  
-
-  
-
-  
-  <span class="middot-divider"></span>
-  <span class="article-reading-time">
-    2 min read
-  </span>
-  
-
-  
-  
-  
-
-  
-  
-  <span class="middot-divider"></span>
-  <span class="article-categories">
-    <i class="fas fa-folder mr-1"></i><a href="/categories/demo/">Demo</a></span>
   
 
 </div>
@@ -1621,14 +1659,15 @@
                 <span>Florida</span>
               
             </div>
-            <div class="card-text">Manage team to create and parse though internally generated externally provided data for analysis and dissemination.
+            <div class="card-text"><p>Manage team to create and parse though internally generated externally provided data for analysis and dissemination.
 Responsibilities include:</p>
 <ul>
 <li>Analysing</li>
 <li>Creating</li>
 <li>Modelling</li>
 <li>Deploying</li>
-</ul></div>
+</ul>
+</div>
           </div>
         </div>
       </div>
@@ -1713,6 +1752,11 @@ Responsibilities include:</p>
           
           
           
+          <a href="/tags/astronomy/" style="font-size:0.7rem">Astronomy</a>
+        
+          
+          
+          
           <a href="/tags/big-data/" style="font-size:1.259879525495411rem">Big Data</a>
         
           
@@ -1729,11 +1773,6 @@ Responsibilities include:</p>
           
           
           <a href="/tags/plot/" style="font-size:0.7rem">plot</a>
-        
-          
-          
-          
-          <a href="/tags/source-themes/" style="font-size:1.587388052831781rem">Source Themes</a>
         
           
           
@@ -1881,7 +1920,7 @@ Responsibilities include:</p>
   
 
   <p class="powered-by">
-    © 2020 &middot; 
+    © 2021 &middot; 
 
     Powered by the
     <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for

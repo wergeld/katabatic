@@ -206,6 +206,44 @@
 
 
 
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-162001422-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url, target) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           if (target !== '_blank') {
+             document.location = url;
+           }
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target, event.target.getAttribute('target'));  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'UA-162001422-1', { 'anonymize_ip': true });
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
   
 
 
@@ -239,7 +277,7 @@
   <meta property="og:description" content="Data Services Team Lead"><meta property="og:image" content="img/map[gravatar:%!s(bool=false) shape:circle]">
   <meta property="twitter:image" content="img/map[gravatar:%!s(bool=false) shape:circle]"><meta property="og:locale" content="en-us">
   
-    <meta property="og:updated_time" content="2020-02-08T00:00:00&#43;00:00">
+    <meta property="og:updated_time" content="2021-01-16T00:00:00&#43;00:00">
   
 
   
@@ -515,6 +553,18 @@
     
     
     <div>
+      <h2><a href="/post/jupiter-and-saturn-december-2020/" >Jupiter And Saturn December 2020</a></h2>
+      <div class="article-style">
+        
+          Conjunction of Jupiter And SaturnI got back into astronomy while reading about the conjunction of Jupiter and Saturn that was set to be at the closes on December 21, 2020. I took out my Meade ETX-90 telescope to view it. Then realized to my horror that the GoTo motor that contols the altitude and azimuth angles of the telescope was no longer functional. Turning on the power with either batteries installed or with a DC power plug resulted in no ON state.
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div>
       <h2><a href="/post/changes-in-us-manufacturing/" >Changes In US Manufacturing</a></h2>
       <div class="article-style">
         
@@ -658,7 +708,7 @@
   
 
   <p class="powered-by">
-    © 2020 &middot; 
+    © 2021 &middot; 
 
     Powered by the
     <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for

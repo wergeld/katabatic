@@ -5,12 +5,45 @@
     <link>/categories/data/</link>
       <atom:link href="/categories/data/index.xml" rel="self" type="application/rss+xml" />
     <description>Data</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020</copyright><lastBuildDate>Sat, 08 Feb 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2021</copyright><lastBuildDate>Sat, 16 Jan 2021 00:00:00 +0000</lastBuildDate>
     <image>
       <url>img/map[gravatar:%!s(bool=false) shape:circle]</url>
       <title>Data</title>
       <link>/categories/data/</link>
     </image>
+    
+    <item>
+      <title>Jupiter And Saturn December 2020</title>
+      <link>/post/jupiter-and-saturn-december-2020/</link>
+      <pubDate>Sat, 16 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>/post/jupiter-and-saturn-december-2020/</guid>
+      <description>
+&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/rmarkdown-libs/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/rmarkdown-libs/pymjs/pym.v1.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/rmarkdown-libs/widgetframe-binding/widgetframe.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;div id=&#34;conjunction-of-jupiter-and-saturn&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Conjunction of Jupiter And Saturn&lt;/h2&gt;
+&lt;p&gt;I got back into astronomy while reading about the conjunction of Jupiter and Saturn that was set to be at the closes on December 21, 2020. I took out my Meade ETX-90 telescope to view it. Then realized to my horror that the GoTo motor that contols the altitude and azimuth angles of the telescope was no longer functional. Turning on the power with either batteries installed or with a DC power plug resulted in no ON state. With the GoTo mount busted how was I going to to… go to…. the planets? Luckily our backyard is south of our house. I knew, generally, that the planets would be in the Southern sky. Now to figure out when and where. I could use one of the many sky mapper websites or software that will present the sky for your area/time. However, I wanted to do this all myself to re-learn what I had used way back in high school and college.&lt;/p&gt;
+&lt;p&gt;In high school we had actually built a radio telescope on &lt;a href=&#34;https://www.tampabay.com/archive/1991/11/06/satellite-dish-launches-class-project/?outputType=amp&#34;&gt;campus&lt;/a&gt; through a science grant. The linked article is a re-publish from 1992 (how time slips by…). We had calculators and notepads that we used to determine when a celestial object would be within view of our dish. Things like Stellarium did not exist yet. I did have an HP calculator that did have a star-plotter on it. That was a crazy piece of efficient coding - however, not at all fast. We learned about time frames, spatial frames, and observer locations. Again, this was all by hand - we even used road atlases to determine the latitude and longitude of our observation location. After I my first year of college I even returned back to the program at my high school as we went on a one week trip to the NRAO in Greenbank, WV where I got hands on time with a few dishes and detectors. My target was Sag A*. However, my printouts are lost to time now.&lt;/p&gt;
+&lt;p&gt;So, with this new exciting conjunction coming up and a hardware failure, I took the plunge to do this by hand again. Only this time in R so that I could make it re-usable and expandable. Steps needed to make this work:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Get list of solar system ephemeris&lt;/li&gt;
+&lt;li&gt;Determine calculations needed to convert the ephemeris to altitude and longitude for my location and time&lt;/li&gt;
+&lt;li&gt;Somehow plot the locations of the planets and maybe animate the motions just for fun&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;After many trials and errors with finding ephemeris for the 2 planets and Earth I thought I had struck gold. Following along with known results I was able to produce predictions for Mars within, to me, an acceptable error range. I then applied my own latitude and longitude and….really horrible results. I am not sure if the logic I was trying to follow involved specific lat/long values. So, I looked for more research items. I ordered a book called Celestial Calculations by J.L. Lawrence, but it had not come yet. I did more Googling and testing. Still, I was getting results that made no sense.&lt;/p&gt;
+&lt;p&gt;In the end I just went outside and found the planets. They were very bright! Here is a picture I managed tdo graph via my Pixel 5:
+&lt;img src=&#34;/post/2021-01-16-jupiter-and-saturn-december-2020_files/jupsat_20201221.jpg&#34; alt=&#34;Saturn and Jupiter on December 21, 2020&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;So, I continued my search on how to solve the issues. I did eventually do it and you can find my code on my &lt;a href=&#34;https://github.com/wergeld/Planet_AltAz&#34;&gt;GitHub&lt;/a&gt; repo. The issues I still have are finding more up to date elements of oscultation other than those from 2013. I have tried to use several R and Python packages to get these but have yet to actually find a library that gets the same orbital elements for 2013 as a test. I did finally get the book and am now working through it. It is much fun and takes me back to my academic times.&lt;/p&gt;
+&lt;p&gt;Here is the output of my plot of Jupiter and Saturn for the month of December 2020 in Tampa, FL:
+&lt;div id=&#34;htmlwidget-1&#34; style=&#34;width:100%;height:480px;&#34; class=&#34;widgetframe html-widget&#34;&gt;&lt;/div&gt;
+&lt;script type=&#34;application/json&#34; data-for=&#34;htmlwidget-1&#34;&gt;{&#34;x&#34;:{&#34;url&#34;:&#34;/post/2021-01-16-jupiter-and-saturn-december-2020_files/figure-html//widgets/widget_unnamed-chunk-1.html&#34;,&#34;options&#34;:{&#34;xdomain&#34;:&#34;*&#34;,&#34;allowfullscreen&#34;:false,&#34;lazyload&#34;:false}},&#34;evals&#34;:[],&#34;jsHooks&#34;:[]}&lt;/script&gt;&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>Changes In US Manufacturing</title>

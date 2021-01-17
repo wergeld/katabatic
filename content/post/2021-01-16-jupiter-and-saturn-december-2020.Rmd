@@ -1,0 +1,156 @@
+---
+title: Jupiter And Saturn December 2020
+author: Admin
+date: '2021-01-16'
+slug: jupiter-and-saturn-december-2020
+categories:
+  - Data
+tags:
+  - Astronomy
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2021-01-16T17:34:01-05:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+```{r setup, include=FALSE}
+library(tidyverse)
+library(highcharter)
+library(readxl)
+library(widgetframe)
+source("C:/Users/stand/Documents/R/PlanetaryFinder/AltAz_Methods.R")
+
+
+# Planet elements
+Osculating_Elements_AUG_16_2013 <- read_excel("C:/Users/stand/Documents/R/PlanetaryFinder/Osculating_Elements_AUG_16_2013.xlsx")
+# location
+locale_lon <- -82
+locale_lat <- 28
+
+# Equinox and mean ecliptic of J2000.0
+JD <- 2450680.5
+
+# Obliquity of the ecliptic at J2000.0
+ec <- 23.439292
+ec_radians <- ec * (pi/180)
+
+altaz <- rbind(
+  AltAz_Planet("Jupiter", locale_lat, locale_lon, as.POSIXct("2020-12-01 23:25:00", tz="UTC")),
+  AltAz_Planet("Jupiter", locale_lat, locale_lon, as.POSIXct("2020-12-02 23:25:00", tz="UTC")),
+  AltAz_Planet("Jupiter", locale_lat, locale_lon, as.POSIXct("2020-12-03 23:25:00", tz="UTC")),
+  AltAz_Planet("Jupiter", locale_lat, locale_lon, as.POSIXct("2020-12-04 23:25:00", tz="UTC")),
+  AltAz_Planet("Jupiter", locale_lat, locale_lon, as.POSIXct("2020-12-05 23:25:00", tz="UTC")),
+  AltAz_Planet("Jupiter", locale_lat, locale_lon, as.POSIXct("2020-12-06 23:25:00", tz="UTC")),
+  AltAz_Planet("Jupiter", locale_lat, locale_lon, as.POSIXct("2020-12-07 23:25:00", tz="UTC")),
+  AltAz_Planet("Jupiter", locale_lat, locale_lon, as.POSIXct("2020-12-08 23:25:00", tz="UTC")),
+  AltAz_Planet("Jupiter", locale_lat, locale_lon, as.POSIXct("2020-12-09 23:25:00", tz="UTC")),
+  AltAz_Planet("Jupiter", locale_lat, locale_lon, as.POSIXct("2020-12-10 23:25:00", tz="UTC")),
+  AltAz_Planet("Jupiter", locale_lat, locale_lon, as.POSIXct("2020-12-11 23:25:00", tz="UTC")),
+  AltAz_Planet("Jupiter", locale_lat, locale_lon, as.POSIXct("2020-12-12 23:25:00", tz="UTC")),
+  AltAz_Planet("Jupiter", locale_lat, locale_lon, as.POSIXct("2020-12-13 23:25:00", tz="UTC")),
+  AltAz_Planet("Jupiter", locale_lat, locale_lon, as.POSIXct("2020-12-14 23:25:00", tz="UTC")),
+  AltAz_Planet("Jupiter", locale_lat, locale_lon, as.POSIXct("2020-12-15 23:25:00", tz="UTC")),
+  AltAz_Planet("Jupiter", locale_lat, locale_lon, as.POSIXct("2020-12-16 23:25:00", tz="UTC")),
+  AltAz_Planet("Jupiter", locale_lat, locale_lon, as.POSIXct("2020-12-17 23:25:00", tz="UTC")),
+  AltAz_Planet("Jupiter", locale_lat, locale_lon, as.POSIXct("2020-12-18 23:25:00", tz="UTC")),
+  AltAz_Planet("Jupiter", locale_lat, locale_lon, as.POSIXct("2020-12-19 23:25:00", tz="UTC")),
+  AltAz_Planet("Jupiter", locale_lat, locale_lon, as.POSIXct("2020-12-20 23:25:00", tz="UTC")),
+  AltAz_Planet("Jupiter", locale_lat, locale_lon, as.POSIXct("2020-12-21 23:25:00", tz="UTC")),
+  AltAz_Planet("Jupiter", locale_lat, locale_lon, as.POSIXct("2020-12-22 23:25:00", tz="UTC")),
+  AltAz_Planet("Jupiter", locale_lat, locale_lon, as.POSIXct("2020-12-23 23:25:00", tz="UTC")),
+  AltAz_Planet("Jupiter", locale_lat, locale_lon, as.POSIXct("2020-12-24 23:25:00", tz="UTC")),
+  AltAz_Planet("Jupiter", locale_lat, locale_lon, as.POSIXct("2020-12-25 23:25:00", tz="UTC")),
+  AltAz_Planet("Jupiter", locale_lat, locale_lon, as.POSIXct("2020-12-26 23:25:00", tz="UTC")),
+  AltAz_Planet("Jupiter", locale_lat, locale_lon, as.POSIXct("2020-12-27 23:25:00", tz="UTC")),
+  AltAz_Planet("Jupiter", locale_lat, locale_lon, as.POSIXct("2020-12-28 23:25:00", tz="UTC")),
+  AltAz_Planet("Jupiter", locale_lat, locale_lon, as.POSIXct("2020-12-29 23:25:00", tz="UTC")),
+  AltAz_Planet("Jupiter", locale_lat, locale_lon, as.POSIXct("2020-12-30 23:25:00", tz="UTC")),
+  AltAz_Planet("Jupiter", locale_lat, locale_lon, as.POSIXct("2020-12-31 23:25:00", tz="UTC")),
+  
+  
+  AltAz_Planet("Saturn", locale_lat, locale_lon, as.POSIXct("2020-12-01 23:25:00", tz="UTC")),
+  AltAz_Planet("Saturn", locale_lat, locale_lon, as.POSIXct("2020-12-02 23:25:00", tz="UTC")),
+  AltAz_Planet("Saturn", locale_lat, locale_lon, as.POSIXct("2020-12-03 23:25:00", tz="UTC")),
+  AltAz_Planet("Saturn", locale_lat, locale_lon, as.POSIXct("2020-12-04 23:25:00", tz="UTC")),
+  AltAz_Planet("Saturn", locale_lat, locale_lon, as.POSIXct("2020-12-05 23:25:00", tz="UTC")),
+  AltAz_Planet("Saturn", locale_lat, locale_lon, as.POSIXct("2020-12-06 23:25:00", tz="UTC")),
+  AltAz_Planet("Saturn", locale_lat, locale_lon, as.POSIXct("2020-12-07 23:25:00", tz="UTC")),
+  AltAz_Planet("Saturn", locale_lat, locale_lon, as.POSIXct("2020-12-08 23:25:00", tz="UTC")),
+  AltAz_Planet("Saturn", locale_lat, locale_lon, as.POSIXct("2020-12-09 23:25:00", tz="UTC")),
+  AltAz_Planet("Saturn", locale_lat, locale_lon, as.POSIXct("2020-12-10 23:25:00", tz="UTC")),
+  AltAz_Planet("Saturn", locale_lat, locale_lon, as.POSIXct("2020-12-11 23:25:00", tz="UTC")),
+  AltAz_Planet("Saturn", locale_lat, locale_lon, as.POSIXct("2020-12-12 23:25:00", tz="UTC")),
+  AltAz_Planet("Saturn", locale_lat, locale_lon, as.POSIXct("2020-12-13 23:25:00", tz="UTC")),
+  AltAz_Planet("Saturn", locale_lat, locale_lon, as.POSIXct("2020-12-14 23:25:00", tz="UTC")),
+  AltAz_Planet("Saturn", locale_lat, locale_lon, as.POSIXct("2020-12-15 23:25:00", tz="UTC")),
+  AltAz_Planet("Saturn", locale_lat, locale_lon, as.POSIXct("2020-12-16 23:25:00", tz="UTC")),
+  AltAz_Planet("Saturn", locale_lat, locale_lon, as.POSIXct("2020-12-17 23:25:00", tz="UTC")),
+  AltAz_Planet("Saturn", locale_lat, locale_lon, as.POSIXct("2020-12-18 23:25:00", tz="UTC")),
+  AltAz_Planet("Saturn", locale_lat, locale_lon, as.POSIXct("2020-12-19 23:25:00", tz="UTC")),
+  AltAz_Planet("Saturn", locale_lat, locale_lon, as.POSIXct("2020-12-20 23:25:00", tz="UTC")),
+  AltAz_Planet("Saturn", locale_lat, locale_lon, as.POSIXct("2020-12-21 23:25:00", tz="UTC")),
+  AltAz_Planet("Saturn", locale_lat, locale_lon, as.POSIXct("2020-12-22 23:25:00", tz="UTC")),
+  AltAz_Planet("Saturn", locale_lat, locale_lon, as.POSIXct("2020-12-23 23:25:00", tz="UTC")),
+  AltAz_Planet("Saturn", locale_lat, locale_lon, as.POSIXct("2020-12-24 23:25:00", tz="UTC")),
+  AltAz_Planet("Saturn", locale_lat, locale_lon, as.POSIXct("2020-12-25 23:25:00", tz="UTC")),
+  AltAz_Planet("Saturn", locale_lat, locale_lon, as.POSIXct("2020-12-26 23:25:00", tz="UTC")),
+  AltAz_Planet("Saturn", locale_lat, locale_lon, as.POSIXct("2020-12-27 23:25:00", tz="UTC")),
+  AltAz_Planet("Saturn", locale_lat, locale_lon, as.POSIXct("2020-12-28 23:25:00", tz="UTC")),
+  AltAz_Planet("Saturn", locale_lat, locale_lon, as.POSIXct("2020-12-29 23:25:00", tz="UTC")),
+  AltAz_Planet("Saturn", locale_lat, locale_lon, as.POSIXct("2020-12-30 23:25:00", tz="UTC")),
+  AltAz_Planet("Saturn", locale_lat, locale_lon, as.POSIXct("2020-12-31 23:25:00", tz="UTC"))
+)
+knitr::opts_chunk$set(collapse = TRUE)
+
+```
+
+## Conjunction of Jupiter And Saturn
+
+I got back into astronomy while reading about the conjunction of Jupiter and Saturn that was set to be at the closes on December 21, 2020. I took out my Meade ETX-90 telescope to view it. Then realized to my horror that the GoTo motor that contols the altitude and azimuth angles of the telescope was no longer functional. Turning on the power with either batteries installed or with a DC power plug resulted in no ON state. With the GoTo mount busted how was I going to to... go to.... the planets? Luckily our backyard is south of our house. I knew, generally, that the planets would be in the Southern sky. Now to figure out when and where. I could use one of the many sky mapper websites or software that will present the sky for your area/time. However, I wanted to do this all myself to re-learn what I had used way back in high school and college.
+
+In high school we had actually built a radio telescope on [campus](https://www.tampabay.com/archive/1991/11/06/satellite-dish-launches-class-project/?outputType=amp) through a science grant. The linked article is a re-publish from 1992 (how time slips by...). We had calculators and notepads that we used to determine when a celestial object would be within view of our dish. Things like Stellarium did not exist yet. I did have an HP calculator that did have a star-plotter on it. That was a crazy piece of efficient coding - however, not at all fast. We learned about time frames, spatial frames, and observer locations. Again, this was all by hand - we even used road atlases to determine the latitude and longitude of our observation location. After I my first year of college I even returned back to the program at my high school as we went on a one week trip to the NRAO in Greenbank, WV where I got hands on time with a few dishes and detectors. My target was Sag A*. However, my printouts are lost to time now.
+
+So, with this new exciting conjunction coming up and a hardware failure, I took the plunge to do this by hand again. Only this time in R so that I could make it re-usable and expandable. Steps needed to make this work:
+
+1. Get list of solar system ephemeris
+2. Determine calculations needed to convert the ephemeris to altitude and longitude for my location and time
+3. Somehow plot the locations of the planets and maybe animate the motions just for fun
+
+
+After many trials and errors with finding ephemeris for the 2 planets and Earth I thought I had struck gold. Following along with known results I was able to produce predictions for Mars within, to me, an acceptable error range. I then applied my own latitude and longitude and....really horrible results. I am not sure if the logic I was trying to follow involved specific lat/long values. So, I looked for more research items. I ordered a book called Celestial Calculations by J.L. Lawrence, but it had not come yet. I did more Googling and testing. Still, I was getting results that made no sense.
+
+In the end I just went outside and found the planets. They were very bright! Here is a picture I managed tdo graph via my Pixel 5:
+![Saturn and Jupiter on December 21, 2020](/post/2021-01-16-jupiter-and-saturn-december-2020_files/jupsat_20201221.jpg)
+
+
+So, I continued my search on how to solve the issues. I did eventually do it and you can find my code on my [GitHub](https://github.com/wergeld/Planet_AltAz) repo. The issues I still have are finding more up to date elements of oscultation other than those from 2013. I have tried to use several R and Python packages to get these but have yet to actually find a library that gets the same orbital elements for 2013 as a test. I did finally get the book and am now working through it. It is much fun and takes me back to my academic times.
+
+
+Here is the output of my plot of Jupiter and Saturn for the month of December 2020 in Tampa, FL:
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+fntltp <- JS("function(){
+  console.log(this);
+  return this.point.date + ' - ' + this.point.Planet + '<br>' + 'Azimuth: ' + this.point.x + '<br>' + 'Altitude: ' + this.point.y
+}")
+
+hc <- highchart() %>% 
+  hc_title(text = "Saturn and Jupiter December 2020") %>% 
+  hc_add_series(data = altaz, type = "scatter", hcaes(x = az, y = alt, group = Planet)) %>% 
+  hc_xAxis(
+    title = list(text = "Azimuth"),
+    opposite = FALSE
+    ) %>% 
+  hc_yAxis(
+    title = list(text = "Altitude"),
+    opposite = FALSE
+    ) %>% 
+  hc_tooltip(formatter = fntltp)
+
+frameWidget(hc)
+```
+
