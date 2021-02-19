@@ -17,7 +17,7 @@ interests:
 - Data Visualization
 name: Levi Richards
 organizations:
-- name: Geographics Solutions
+- name: Geographic Solutions
   url: "https://www.geographicsolutions.com/"
 role: Data Services Team Lead
 social:
