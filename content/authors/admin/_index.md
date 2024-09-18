@@ -1,10 +1,10 @@
 ---
 authors:
 - admin
-bio: My research interests include data anlytics, data visualization, and micro-controllers.
+bio: My research interests include data analytics, data visualization, and micro-controllers.
 education:
   courses:
-  - course: MS Physics - Speclializing in UV Fluorescence Detection
+  - course: MS Physics - Specializing in UV Fluorescence Detection
     institution: University of South Florida
     year: 2001
   - course: BS Physics
