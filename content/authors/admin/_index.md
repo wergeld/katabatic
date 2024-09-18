@@ -33,4 +33,4 @@ user_groups:
 - Visitors
 ---
 
-Levi Richards has over 16 years of experience working with labor market information databases.  At Geographic Solutions, his main focus is to merge, convert, and create data sets of labor market, economic, and education data for use in the company’s LMI and education solutions. At IQuery, INC he is responsible for overseeing a team that combines traditional labor market information, internally produced job openings dasta, and corporate financial data into a cohesive product.
+Levi Richards has over 16 years of experience working with labor market information databases.  At Geographic Solutions, his main focus is to merge, convert, and create data sets of labor market, economic, and education data for use in the company’s LMI and education solutions. At IQuery, INC he is responsible for overseeing a team that combines traditional labor market information, internally produced job openings data, and corporate financial data into a cohesive product.
